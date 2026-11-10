@@ -1,4 +1,4 @@
-from core.notifiers import ConsoleNotifier
+from core.notifiers import ConsoleNotifier, TelegramNotifier, Notifier 
 from core.processor import PaymentProcessor
 from core.registry import buat_metode, daftar_plugin
 from core.utils import rupiah
@@ -9,8 +9,11 @@ def main() -> None:
     muat_semua_plugin()
     print("Plugin terdaftar:", daftar_plugin())
     print("-" * 60)
- 
-    pemroses = PaymentProcessor(ConsoleNotifier())
+#Membuktikan isinstance
+    print("Apakah TelegramNotifier adalah Notifier?", isinstance(TelegramNotifier(), Notifier))
+    print("_" * 60)
+
+    pemroses = PaymentProcessor(TelegramNotifier())
  
     skenario = [
         ("transfer", {"saldo": 1_000_000, "bank": "BCA"}, 250_000),
